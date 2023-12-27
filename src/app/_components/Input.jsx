@@ -175,6 +175,7 @@ const Input = () => {
         style={{ display: "none" }}
         id="fileInput"
         ref={fileInputRef}
+        accept="image/png, image/jpeg, image/jpg"
       />
       {!resizedBase64String ? (
         <div
