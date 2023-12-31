@@ -6,7 +6,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 
-const ImageViewer = ({ itemData }) => {
+const ImageViewer = ({ itemData, showImageListItemBar = true }) => {
   return (
     <ImageList
       sx={{
@@ -17,18 +17,22 @@ const ImageViewer = ({ itemData }) => {
       key={""}
     >
       {itemData.map((item) => (
-        <ImageListItem key={item.img}>
+        <ImageListItem key={item.img || item}>
           <Image
-            src={`data:image/jpeg;base64,${item.imageSrc}`}
-            alt={item.imageId}
+            src={
+              item.imageSrc ? `data:image/jpeg;base64,${item.imageSrc}` : item
+            }
+            alt={item.imageId || "multiple"}
             loading="lazy"
             width={300}
             height={300}
           />
-          <ImageListItemBar
-            cols={4}
-            title={`${item.similarity?.toFixed(6)}%`}
-          />
+          {showImageListItemBar && (
+            <ImageListItemBar
+              cols={4}
+              title={`${item.similarity?.toFixed(6)}%`}
+            />
+          )}
         </ImageListItem>
       ))}
     </ImageList>

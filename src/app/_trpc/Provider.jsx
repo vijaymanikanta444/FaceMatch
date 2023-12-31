@@ -17,7 +17,7 @@ export default function Provider({ children }) {
       const client = trpc.createClient({
         links: [
           httpBatchLink({
-            url: `${window.location.href}api/trpc`,
+            url: `${window.location.origin}/api/trpc`,
           }),
         ],
       });
